@@ -1,0 +1,103 @@
+<maven2-moduleset plugin="maven-plugin@3.0">
+    <actions />
+    <description>
+        svn/R91/Branches/B265-PaymentBatchProcessOptimize/8020-Management@Head持续集成任务
+    </description>
+    <keepDependencies>false</keepDependencies>
+    <properties>
+        <jenkins.plugins.maveninfo.config.MavenInfoJobConfig
+            plugin="maven-info@0.2.0">
+            <mainModulePattern />
+            <dependenciesPattern />
+            <assignName>false</assignName>
+            <nameTemplate />
+            <assignDescription>false</assignDescription>
+            <descriptionTemplate />
+        </jenkins.plugins.maveninfo.config.MavenInfoJobConfig>
+        <jenkins.model.BuildDiscarderProperty>
+            <strategy class="hudson.tasks.LogRotator">
+                <daysToKeep>-1</daysToKeep>
+                <numToKeep>-1</numToKeep>
+                <artifactDaysToKeep>-1</artifactDaysToKeep>
+                <artifactNumToKeep>-1</artifactNumToKeep>
+            </strategy>
+        </jenkins.model.BuildDiscarderProperty>
+    </properties>
+    <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.9">
+        <locations>
+            <hudson.scm.SubversionSCM_-ModuleLocation>
+                <remote>
+                    http://192.168.143.143/svn/R91/Branches/B265-PaymentBatchProcessOptimize/8020-Management@Head
+                </remote>
+                <credentialsId>SVN_Credential</credentialsId>
+                <local>.</local>
+                <depthOption>infinity</depthOption>
+                <ignoreExternalsOption>false</ignoreExternalsOption>
+            </hudson.scm.SubversionSCM_-ModuleLocation>
+        </locations>
+        <excludedRegions />
+        <includedRegions />
+        <excludedUsers />
+        <excludedRevprop />
+        <excludedCommitMessages />
+        <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater" />
+        <ignoreDirPropChanges>false</ignoreDirPropChanges>
+        <filterChangelog>false</filterChangelog>
+    </scm>
+    <canRoam>true</canRoam>
+    <disabled>false</disabled>
+    <blockBuildWhenDownstreamBuilding>false
+    </blockBuildWhenDownstreamBuilding>
+    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+    <triggers>
+        <hudson.triggers.SCMTrigger>
+            <spec>H 1 * * *</spec>
+            <ignorePostCommitHooks>false</ignorePostCommitHooks>
+        </hudson.triggers.SCMTrigger>
+    </triggers>
+    <concurrentBuild>false</concurrentBuild>
+    <rootModule>
+        <groupId>cpcn.payment</groupId>
+        <artifactId>B265-Management</artifactId>
+    </rootModule>
+    <goals>clean package sonar:sonar</goals>
+    <aggregatorStyleBuild>true</aggregatorStyleBuild>
+    <incrementalBuild>false</incrementalBuild>
+    <ignoreUpstremChanges>true</ignoreUpstremChanges>
+    <ignoreUnsuccessfulUpstreams>false</ignoreUnsuccessfulUpstreams>
+    <archivingDisabled>false</archivingDisabled>
+    <siteArchivingDisabled>false</siteArchivingDisabled>
+    <fingerprintingDisabled>false</fingerprintingDisabled>
+    <resolveDependencies>false</resolveDependencies>
+    <processPlugins>false</processPlugins>
+    <mavenValidationLevel>-1</mavenValidationLevel>
+    <runHeadless>false</runHeadless>
+    <disableTriggerDownstreamProjects>false
+    </disableTriggerDownstreamProjects>
+    <blockTriggerWhenBuilding>true</blockTriggerWhenBuilding>
+    <settings class="jenkins.mvn.DefaultSettingsProvider" />
+    <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider" />
+    <reporters />
+    <publishers>
+        <org.jenkinsci.plugins.emailext__template.ExtendedEmailTemplatePublisher
+            plugin="emailext-template@1.0">
+            <templateIds>
+                <org.jenkinsci.plugins.emailext__template.TemplateId>
+                    <templateId>emailext-template-1510644178438</templateId>
+                </org.jenkinsci.plugins.emailext__template.TemplateId>
+            </templateIds>
+        </org.jenkinsci.plugins.emailext__template.ExtendedEmailTemplatePublisher>
+    </publishers>
+    <buildWrappers>
+        <hudson.plugins.sonar.SonarBuildWrapper
+            plugin="sonar@2.6.1" />
+    </buildWrappers>
+    <prebuilders />
+    <postbuilders />
+    <runPostStepsIfResult>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+    </runPostStepsIfResult>
+</maven2-moduleset>
